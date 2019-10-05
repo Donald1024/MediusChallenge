@@ -1,7 +1,9 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-import time
 import sys
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.by import By
 
 def extract_symptoms(disease):
 	driver = webdriver.Chrome(executable_path='./chromedriver')  
@@ -22,7 +24,7 @@ def extract_symptoms(disease):
 		box = driver.find_elements_by_xpath('//div[@class="gsc-results-wrapper-overlay gsc-results-wrapper-visible"]')[0]
 		driver.execute_script("arguments[0].scrollIntoView(true);", result)
 		driver.execute_script("arguments[0].scrollBy(0,-100)",box) 
-		time.sleep(3)
+		WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.XPATH,'//div[@class="gsc-results gsc-webResult"]/div[@class="gsc-webResult gsc-result"][1]//div[@class="gs-title"]/a[@class="gs-title"]'))).click()
 		result.click()
 	except Exception as e:
 		print('fail to find the result webpage')
