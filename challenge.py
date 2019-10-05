@@ -25,7 +25,6 @@ def extract_symptoms(disease):
 		driver.execute_script("arguments[0].scrollIntoView(true);", result)
 		driver.execute_script("arguments[0].scrollBy(0,-100)",box) 
 		WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.XPATH,'//div[@class="gsc-results gsc-webResult"]/div[@class="gsc-webResult gsc-result"][1]//div[@class="gs-title"]/a[@class="gs-title"]'))).click()
-		result.click()
 	except Exception as e:
 		print('fail to find the result webpage')
 		return -1
