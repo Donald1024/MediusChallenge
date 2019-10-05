@@ -26,7 +26,6 @@ def extract_symptoms(disease):
 		result.click()
 	except Exception as e:
 		print('fail to find the result webpage')
-		raise
 		return -1
 
 	try:
@@ -34,7 +33,6 @@ def extract_symptoms(disease):
 		result[0].click()
 	except Exception as e:
 		print('fail to find Patient Information')
-		raise
 		return -1
 
 	soup = BeautifulSoup(driver.page_source, 'html.parser')
@@ -64,5 +62,4 @@ if __name__ == '__main__':
 	if len(argvs) <= 1:
 		print('Type disease')
 	else:
-		print(argvs[-1])
 		extract_symptoms(argvs[-1])
