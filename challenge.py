@@ -20,11 +20,11 @@ def extract_symptoms(disease):
 		return -1
 
 	try:
-		result = driver.find_elements_by_xpath('//div[@class="gsc-results gsc-webResult"]/div[@class="gsc-webResult gsc-result"][1]//div[@class="gs-title"]/a[@class="gs-title"]')[0]
+		result = driver.find_elements_by_xpath('//div[@class="gsc-results gsc-webResult"]//div[@class="gsc-webResult gsc-result"][1]//div[@class="gs-title"]/a[@class="gs-title"]')[0]
 		box = driver.find_elements_by_xpath('//div[@class="gsc-results-wrapper-overlay gsc-results-wrapper-visible"]')[0]
 		driver.execute_script("arguments[0].scrollIntoView(true);", result)
 		driver.execute_script("arguments[0].scrollBy(0,-100)",box) 
-		WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.XPATH,'//div[@class="gsc-results gsc-webResult"]/div[@class="gsc-webResult gsc-result"][1]//div[@class="gs-title"]/a[@class="gs-title"]'))).click()
+		WebDriverWait(driver,10).until(EC.element_to_be_clickable((By.XPATH,'//div[@class="gsc-results gsc-webResult"]//div[@class="gsc-webResult gsc-result"][1]//div[@class="gs-title"]/a[@class="gs-title"]'))).click()
 	except Exception as e:
 		print('fail to find the result webpage')
 		return -1
